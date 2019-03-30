@@ -1,0 +1,13 @@
+﻿生成启动时间为 2017/11/22 21:21:39。
+     1>项目“c:\Users\administrator\documents\visual studio 2013\Projects\CY1701_20171122\CY1701_20171122\CY1701_20171122.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\Visual Studio2013\address\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         E:\Visual Studio2013\address\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\administrator\documents\visual studio 2013\Projects\CY1701_20171122\Debug\CY1701_20171122.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\administrator\documents\visual studio 2013\Projects\CY1701_20171122\Debug\CY1701_20171122.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\administrator\documents\visual studio 2013\Projects\CY1701_20171122\Debug\CY1701_20171122.lib" /MACHINE:X86 Debug\main.obj
+         CY1701_20171122.vcxproj -> c:\users\administrator\documents\visual studio 2013\Projects\CY1701_20171122\Debug\CY1701_20171122.exe
+     1>已完成生成项目“c:\Users\administrator\documents\visual studio 2013\Projects\CY1701_20171122\CY1701_20171122\CY1701_20171122.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.74

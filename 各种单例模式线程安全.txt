@@ -1,0 +1,115 @@
+﻿//单例模式一  线程安全的!!!
+class SingleTon //快加载（编译类时加载）
+{
+public:
+    static SingleTon* getInstance()
+    {
+        return &singleTon;
+    }
+private:
+    SingleTon(){}
+    static SingleTon singleTon;
+};
+SingleTon SingleTon::singleTon;
+
+
+//单例模式二  是不是线程安全的？？？
+class SingleTon
+{
+public:
+    static SingleTon* getInstance()
+    {
+        // gcc 4.6
+        /*   static int count=0;
+        static局部变量只初始化一次
+        
+        if(!flag)
+            lock();
+            if(!flag)
+                init
+                flag=true;
+            unlock();
+        static局部变量的初始化是由编译器保证
+        它的线程安全的
+        */
+        static SingleTon singleTon; 
+        return &singleTon;
+    }
+private:
+    SingleTon(){}
+};
+
+
+//单例模式三 是不是线程安全的单例模式？？？
+class SingleTon
+{
+public:
+    //getInstance这个函数是不是线程安全的函数？？？
+    //getInstance这个函数是不是可重入函数？？？
+    static SingleTon* getInstance()
+    {
+        pthread_mutex_lock(&mutex);
+        if(mpSingleTon == NULL)
+        {
+            mpSingleTon = new SingleTon();
+        }
+        pthread_mutex_unlock(&mutex);
+        return mpSingleTon;
+    }
+private:
+    SingleTon(){}
+    ~SingleTon(){pthread_mutex_destroy(&mutex, NULL);}
+    static pthread_mutex_t mutex;
+    static SingleTon *mpSingleTon;
+};
+pthread_mutex_t SingleTon::mutex = PTHREAD_MUTEX_INITIALIZER;
+SingleTon *SingleTon::mpSingleTon=NULL;
+
+
+class CMutex
+{
+public:
+    CMutex()
+    {
+        pthread_mutex_init(&mutex, NULL);
+    }
+    ~CMutex()
+    {
+        pthread_mutex_destroy(&mutex);
+    }
+    void lock()
+    {
+        pthread_mutex_lock(&mutex);
+    }
+    void unlock()
+    {
+        pthread_mutex_unlock(&mutex);
+    }
+private:
+    pthread_mutex_t mutex;
+};
+
+class SingleTon//懒加载（使用的时候才加载）
+{			
+public:
+    //getInstance这个函数是不是线程安全的函数？？？
+    //getInstance这个函数是不是可重入函数？？？
+    static SingleTon* getInstance()
+    {
+        if(mpSingleTon == NULL)
+        {
+            mutex.lock();   // 双重锁机制
+            if(mpSingleTon == NULL)
+                mpSingleTon = new SingleTon();
+            mutex.unlock();
+        }
+        return mpSingleTon;
+    }
+private:
+    SingleTon(){}
+    ~SingleTon(){}
+    static CMutex mutex;
+    static volatile SingleTon *mpSingleTon;
+};
+CMutex SingleTon::mutex;
+SingleTon *SingleTon::mpSingleTon=NULL;
